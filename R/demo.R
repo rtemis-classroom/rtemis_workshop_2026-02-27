@@ -24,32 +24,49 @@ datp <- preprocessed(prp)
 check_data(datp)
 
 # %% Models ----
+# We train 4 models using different algorithms, but the same outer resampling folds.
+# Please note that we are doing minimal tuning to reduce demo runtime.
 
-## GLMNET ----
+## %% GLMNET ----
 hospitalized48_glmnet <- train(
   datp,
   algorithm = "glmnet",
   outer_resampling_config = setup_Resampler(seed = 650),
   outdir = "./Models/hospitalized48_glmnet"
 )
+plot_roc(
+  hospitalized48_glmnet,
+  main = "GLMNET",
+  filename = "./Models/hospitalized48_glmnet_roc.svg"
+)
 
-## CART ----
+## %% CART ----
 hospitalized48_cart <- train(
   datp,
   algorithm = "cart",
   outer_resampling_config = setup_Resampler(seed = 650),
   outdir = "./Models/hospitalized48_cart"
 )
+plot_roc(
+  hospitalized48_cart,
+  main = "CART",
+  filename = "./Models/hospitalized48_cart_roc.svg"
+)
 
-## LightRF ----
+## %% LightRF ----
 hospitalized48_lightrf <- train(
   datp,
   algorithm = "lightrf",
   outer_resampling_config = setup_Resampler(seed = 650),
   outdir = "./Models/hospitalized48_lightrf"
 )
+plot_roc(
+  hospitalized48_lightrf,
+  main = "LightRF",
+  filename = "./Models/hospitalized48_lightrf_roc.svg"
+)
 
-## LihtGBM ----
+## %% LightGBM ----
 hospitalized48_lightgbm <- train(
   datp,
   hyperparameters = setup_LightGBM(
@@ -57,6 +74,11 @@ hospitalized48_lightgbm <- train(
   ),
   outer_resampling_config = setup_Resampler(seed = 650),
   outdir = "./Models/hospitalized48_lightgbm"
+)
+plot_roc(
+  hospitalized48_lightgbm,
+  main = "LIghtGBM",
+  filename = "./Models/hospitalized48_lightgbm_roc.svg"
 )
 
 # %% Present Results ----
@@ -67,5 +89,6 @@ present(
     hospitalized48_lightrf,
     hospitalized48_lightgbm
   ),
+  main = "Hospitalized at 48hrs",
   filename = "./Models/hospitalized48_boxplot.svg"
 )
