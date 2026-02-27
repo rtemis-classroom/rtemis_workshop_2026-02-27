@@ -1,0 +1,31 @@
+2026-02-26 17:42:27 Started.
+2026-02-26 17:42:49 Done.
+
+<Resampled Classification Model>
+GLMNET (Elastic Net)
+⚙ Tuned using exhaustive grid search.
+⟳ Tested using 10 independent folds.
+
+  <Resampled Classification Training Metrics>
+    Showing mean (sd) across resamples.
+          Sensitivity: 0.906 (3e-03)
+          Specificity: 0.629 (0.033)
+    Balanced_Accuracy: 0.767 (0.017)
+                  PPV: 0.716 (0.018)
+                  NPV: 0.866 (0.008)
+                   F1: 0.800 (0.012)
+             Accuracy: 0.770 (0.017)
+                  AUC: 0.850 (0.008)
+          Brier_Score: 0.172 (0.006)
+
+  <Resampled Classification Test Metrics>
+    Showing mean (sd) across resamples.
+          Sensitivity: 0.881 (0.061)
+          Specificity: 0.580 (0.122)
+    Balanced_Accuracy: 0.731 (0.075)
+                  PPV: 0.688 (0.065)
+                  NPV: 0.823 (0.102)
+                   F1: 0.771 (0.056)
+             Accuracy: 0.733 (0.075)
+                  AUC: 0.787 (0.067)
+          Brier_Score: 0.191 (0.025)

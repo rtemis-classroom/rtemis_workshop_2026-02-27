@@ -1,0 +1,30 @@
+2026-02-26 17:43:04 Started.
+2026-02-26 17:43:09 Done.
+
+<Resampled Classification Model>
+LightRF (LightGBM Random Forest)
+⟳ Tested using 10 independent folds.
+
+  <Resampled Classification Training Metrics>
+    Showing mean (sd) across resamples.
+          Sensitivity: 0.805 (0.012)
+          Specificity: 0.665 (0.023)
+    Balanced_Accuracy: 0.735 (0.015)
+                  PPV: 0.713 (0.015)
+                  NPV: 0.767 (0.015)
+                   F1: 0.756 (0.012)
+             Accuracy: 0.736 (0.015)
+                  AUC: 0.783 (0.006)
+          Brier_Score: 0.220 (1.3e-03)
+
+  <Resampled Classification Test Metrics>
+    Showing mean (sd) across resamples.
+          Sensitivity: 0.783 (0.097)
+          Specificity: 0.644 (0.105)
+    Balanced_Accuracy: 0.714 (0.065)
+                  PPV: 0.698 (0.066)
+                  NPV: 0.750 (0.097)
+                   F1: 0.735 (0.060)
+             Accuracy: 0.714 (0.065)
+                  AUC: 0.732 (0.061)
+          Brier_Score: 0.227 (0.008)

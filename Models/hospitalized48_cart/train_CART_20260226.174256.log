@@ -1,0 +1,30 @@
+2026-02-26 17:42:56 Started.
+2026-02-26 17:42:56 Done.
+
+<Resampled Classification Model>
+CART (Classification and Regression Trees)
+⟳ Tested using 10 independent folds.
+
+  <Resampled Classification Training Metrics>
+    Showing mean (sd) across resamples.
+          Sensitivity: 0.944 (0.020)
+          Specificity: 0.781 (0.032)
+    Balanced_Accuracy: 0.863 (0.010)
+                  PPV: 0.817 (0.020)
+                  NPV: 0.932 (0.019)
+                   F1: 0.876 (0.008)
+             Accuracy: 0.864 (0.010)
+                  AUC: 0.903 (0.020)
+          Brier_Score: 0.106 (0.007)
+
+  <Resampled Classification Test Metrics>
+    Showing mean (sd) across resamples.
+          Sensitivity: 0.824 (0.063)
+          Specificity: 0.659 (0.123)
+    Balanced_Accuracy: 0.742 (0.072)
+                  PPV: 0.720 (0.076)
+                  NPV: 0.784 (0.069)
+                   F1: 0.767 (0.060)
+             Accuracy: 0.744 (0.071)
+                  AUC: 0.761 (0.089)
+          Brier_Score: 0.204 (0.055)
