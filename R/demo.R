@@ -5,7 +5,7 @@
 library(rtemis)
 library(data.table)
 
-# %% Data ----
+# %% Read & Inspect Data ----
 dat <- read("./Data/data.xlsx")
 inspect(dat)
 
@@ -23,7 +23,7 @@ datp <- preprocessed(prp)
 
 check_data(datp)
 
-# %% Models ----
+# %% Train Models ----
 # We train 4 models using different algorithms, but the same outer resampling folds.
 # Please note that we are doing minimal tuning to reduce demo runtime.
 
@@ -106,6 +106,5 @@ present(
     hospitalized48_lightrf,
     hospitalized48_lightgbm
   ),
-  main = "Hospitalized at 48hrs",
-  filename = "./Models/hospitalized48_boxplot.svg"
+  main = "Hospitalized at 48hrs"
 )
