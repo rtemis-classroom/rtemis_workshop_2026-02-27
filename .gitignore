@@ -13,3 +13,6 @@ __dev/
 
 # RDS
 *.rds
+
+# Data
+Data/data.xlsx
