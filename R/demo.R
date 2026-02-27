@@ -39,6 +39,11 @@ plot_roc(
   main = "GLMNET",
   filename = "./Models/hospitalized48_glmnet_roc.svg"
 )
+plot_varimp(
+  hospitalized48_glmnet,
+  show_top = 11L,
+  filename = "./Models/hospitalized48_glmnet_varimp.svg"
+)
 
 ## %% CART ----
 hospitalized48_cart <- train(
@@ -52,6 +57,10 @@ plot_roc(
   main = "CART",
   filename = "./Models/hospitalized48_cart_roc.svg"
 )
+plot_varimp(
+  hospitalized48_cart,
+  filename = "./Models/hospitalized48_cart_varimp.svg"
+)
 
 ## %% LightRF ----
 hospitalized48_lightrf <- train(
@@ -64,6 +73,10 @@ plot_roc(
   hospitalized48_lightrf,
   main = "LightRF",
   filename = "./Models/hospitalized48_lightrf_roc.svg"
+)
+plot_varimp(
+  hospitalized48_lightrf,
+  filename = "./Models/hospitalized48_lightrf_varimp.svg"
 )
 
 ## %% LightGBM ----
@@ -79,6 +92,10 @@ plot_roc(
   hospitalized48_lightgbm,
   main = "LIghtGBM",
   filename = "./Models/hospitalized48_lightgbm_roc.svg"
+)
+plot_varimp(
+  hospitalized48_lightgbm,
+  filename = "./Models/hospitalized48_lightgbm_varimp.svg"
 )
 
 # %% Present Results ----
