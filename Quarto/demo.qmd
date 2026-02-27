@@ -1,0 +1,185 @@
+---
+author: "E.D. Gennatas"
+date: "2026-02-27"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 3
+    theme:
+      dark: darkly
+      light: flatly
+---
+
+```{r fansi}
+#| echo: false
+#| results: asis
+old.hooks <- fansi::set_knit_hooks(knitr::knit_hooks, which = c("output", "message"))
+```
+
+# rtemis Workshop Demo
+
+[rtemis Home](https://www.rtemis.org) | [Documentation](https://docs.rtemis.org/r/) | [GitHub](https://www.github.com/rtemis-org/rtemis)
+
+## Load Packages
+
+```{r}
+library(rtemis)
+library(data.table)
+```
+
+## Read & Inspect Data
+
+```{r}
+dat <- read("../Data/data.xlsx")
+```
+
+```{r}
+inspect(dat)
+```
+
+## Check data
+
+```{r}
+check_data(dat)
+```
+
+## Preprocess data
+
+Create a `Preprocessor` object:
+
+```{r}
+prp <- preprocess(
+  dat,
+  config = setup_Preprocessor(character2factor = TRUE, remove_duplicates = TRUE)
+)
+```
+
+Get the preprocessed data:
+
+```{r}
+datp <- preprocessed(prp)
+```
+
+Re-check data:
+
+```{r}
+check_data(datp)
+```
+
+## Train Models
+
+We train 4 models using different algorithms, but the same outer resampling folds.  
+Please note that we are doing minimal tuning to reduce demo runtime.
+
+### GLMNET
+
+```{r}
+hospitalized48_glmnet <- train(
+  datp,
+  algorithm = "glmnet",
+  outer_resampling_config = setup_Resampler(seed = 650)
+)
+```
+
+Plot ROC curve:
+
+```{r}
+plot_roc(
+  hospitalized48_glmnet,
+  main = "GLMNET"
+)
+```
+
+Plot variable importance:
+
+```{r}
+plot_varimp(
+  hospitalized48_glmnet,
+  show_top = 11L
+)
+```
+
+### CART
+
+```{r}
+hospitalized48_cart <- train(
+  datp,
+  algorithm = "cart",
+  outer_resampling_config = setup_Resampler(seed = 650)
+)
+```
+
+```{r}
+plot_roc(
+  hospitalized48_cart,
+  main = "CART"
+)
+```
+
+```{r}
+plot_varimp(
+  hospitalized48_cart
+)
+```
+
+### LightRF
+
+```{r}
+hospitalized48_lightrf <- train(
+  datp,
+  algorithm = "lightrf",
+  outer_resampling_config = setup_Resampler(seed = 650)
+)
+```
+
+```{r}
+plot_roc(
+  hospitalized48_lightrf,
+  main = "LightRF"
+)
+```
+
+```{r}
+plot_varimp(
+  hospitalized48_lightrf
+)
+```
+
+### LightGBM
+
+```{r}
+hospitalized48_lightgbm <- train(
+  datp,
+  hyperparameters = setup_LightGBM(
+    learning_rate = c(0.001, 0.01)
+  ),
+  outer_resampling_config = setup_Resampler(seed = 650)
+)
+```
+
+```{r}
+plot_roc(
+  hospitalized48_lightgbm,
+  main = "LIghtGBM"
+)
+```
+
+```{r}
+plot_varimp(
+  hospitalized48_lightgbm
+)
+```
+
+## Present Results
+
+```{r}
+present(
+  list(
+    hospitalized48_glmnet,
+    hospitalized48_cart,
+    hospitalized48_lightrf,
+    hospitalized48_lightgbm
+  )
+)
+```
